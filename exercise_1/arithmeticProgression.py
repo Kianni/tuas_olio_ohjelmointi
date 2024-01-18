@@ -4,8 +4,15 @@
 # counts the number of terms that appeared in the AP, 
 # the sum of the terms and the sum of the squared terms
 
+def print_progression(max_value):
+    if max_value < 3:
+        print("Procession is: ")
+    else:
+        progression = [str(i) for i in range(3, max_value + 1, 3)]
+        print("Procession is: " + ", ".join(progression))
+
 def main():
-    max_value = int(input("Enter the maximum value of the progression: "))
+    max_value = int(input("Give maximum value: "))
     sum = 0
     sum_squares = 0
     count = 0
@@ -13,8 +20,9 @@ def main():
         sum += i
         sum_squares += i ** 2
         count += 1
+    print_progression(max_value)
     print("Number of terms:", count)
-    print("Sum of terms:", sum)
-    print("Sum of squares of terms:", sum_squares)
+    print("Sum of terms is:", sum)
+    print("Sum of squared terms is:", sum_squares)
 
 main()
