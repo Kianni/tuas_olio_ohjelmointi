@@ -7,11 +7,11 @@ import random
 
 def get_winner(user_choice, computer_choice):
     if user_choice == computer_choice:
-        print("Draw")
+        print("It's a tie!")
         return "Draw"
-    elif (user_choice == "rock" and computer_choice == "scissors") or \
-         (user_choice == "paper" and computer_choice == "rock") or \
-         (user_choice == "scissors" and computer_choice == "paper"):
+    elif (user_choice == "R" and computer_choice == "scissors") or \
+         (user_choice == "P" and computer_choice == "rock") or \
+         (user_choice == "S" and computer_choice == "paper"):
         print("You win")
         return "User"
     else:
@@ -22,13 +22,13 @@ def print_final_results(user_score, computer_score):
     if user_score == 3:
         print("You won the game")
     else:
-        print("Computer won the game")
+        print("You lost!")
     print("Final score: Computer -", computer_score, ", You -", user_score)
 
 def make_a_choice():
-    user_choice = input("Enter your choice (rock, paper, scissors): ")
+    user_choice = input("Give your choice (R, P, S): ")
     computer_choice = random.choice(["rock", "paper", "scissors"])
-    print("Computer's choice:", computer_choice)
+    print("Computer's choice is: ", computer_choice)
     return user_choice, computer_choice
 
 def main():
@@ -41,7 +41,7 @@ def main():
             user_score += 1
         elif winner == "Computer":
             computer_score += 1
-        print("Score: Computer -", computer_score, ", You -", user_score)
+        print("Computer ", computer_score, ", You ", user_score)
     print_final_results(user_score, computer_score)
 
 main()
