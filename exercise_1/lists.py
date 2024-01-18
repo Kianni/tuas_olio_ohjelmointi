@@ -25,3 +25,10 @@ for i in range(13):
     number = random.randint(0,100)
     numbers.append(number)
 print(numbers)
+
+# Arrange numbers in the list from smallest to largest and strings in alphabetical order and print out the lists.
+numbers.sort()
+strings.sort()
+print(numbers)
+print(strings)
+ 
