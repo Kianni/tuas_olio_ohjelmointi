@@ -7,27 +7,19 @@ import random
 
 CHOICES = {"R": "rock", "P": "paper", "S": "scissors"}
 
+RESULT = {"rock": "scissors", "paper": "rock", "scissors": "paper"}
+MESSAGES = {"rock": "Rock breaks Scissors", "paper": "Paper covers Rock", "scissors": "Scissors cuts Paper"}
+
 def get_winner(user_choice, computer_choice):
     user_choice = CHOICES[user_choice.upper()]
     if user_choice == computer_choice:
         print("It's a tie!")
         return "Draw"
-    elif (user_choice == "rock" and computer_choice == "scissors"):
-        print("Rock breaks Scissors")
-        return "User"
-    elif (user_choice == "paper" and computer_choice == "rock"):
-        print("Paper covers Rock")
-        return "User"
-    elif (user_choice == "scissors" and computer_choice == "paper"):
-        print("Scissors cuts Paper")
+    elif RESULT[user_choice] == computer_choice:
+        print(MESSAGES[user_choice])
         return "User"
     else:
-        if (computer_choice == "rock" and user_choice == "scissors"):
-            print("Rock breaks Scissors")
-        elif (computer_choice == "paper" and user_choice == "rock"):
-            print("Paper covers Rock")
-        elif (computer_choice == "scissors" and user_choice == "paper"):
-            print("Scissors cuts Paper")
+        print(MESSAGES[computer_choice])
         return "Computer"
 
 def print_final_results(user_score, computer_score):
@@ -35,7 +27,6 @@ def print_final_results(user_score, computer_score):
         print("You won the game")
     else:
         print("You lost!")
-    print("Final score: Computer -", computer_score, ", You -", user_score)
 
 def make_a_choice():
     user_choice = input("Give your choice (R, P, S): ")
