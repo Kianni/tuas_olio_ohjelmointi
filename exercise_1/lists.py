@@ -9,21 +9,21 @@
 numbers = []
 for i in range(13):
     number = int(input("Enter a number: "))
-    numbers.append(number)
-print(numbers)
+    numbers.append(str(number))
+print(', '.join(numbers))
 
 #Do the same with strings. Print out both lists. 
 strings = []
 for i in range(13):
     string = input("Enter a string: ")
     strings.append(string)
-print(strings)
+print(', '.join(strings))
 
 #Then fill the number list with randomly generated numbers and print it out. 
 import random
 numbers = []
 for i in range(13):
-    number = random.randint(0,100)
+    number = random.randint(-50,100)
     numbers.append(number)
 print(numbers)
 
