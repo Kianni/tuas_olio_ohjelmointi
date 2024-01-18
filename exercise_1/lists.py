@@ -1,8 +1,9 @@
 # File name: lists.py
 # Author: Kirill
-# Description: list 13 items and fill it with numbers asked from user, print the list out
-# Description: list 13 items and fill it with strings asked from user, print the list out
-# Description: fill the number list with randomly generated numbers and print it out
+# Description: lists 13 items and fill it with numbers asked from user, print the list out
+# Description: lists 13 items and fill it with strings asked from user, print the list out
+# Description: fills the number list with randomly generated numbers and print it out
+# Description: arranges numbers in the list from smallest to largest and strings in alphabetical order and print out the lists
 
 #Code a list of at least 10 items and fill it with numbers asked from user.
 numbers = []
@@ -31,4 +32,4 @@ numbers.sort()
 strings.sort()
 print(numbers)
 print(strings)
- 
+
