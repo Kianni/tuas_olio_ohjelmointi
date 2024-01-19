@@ -22,8 +22,8 @@ def get_winner(user_choice, computer_choice):
         print(MESSAGES[computer_choice])
         return "Computer"
 
-def print_final_results(user_score, computer_score):
-    if user_score == 3:
+def print_final_results(winner):
+    if winner == "User":
         print("You won the game")
     else:
         print("You lost!")
@@ -34,7 +34,7 @@ def make_a_choice():
     print("Computer's choice is:", computer_choice)
     return user_choice, computer_choice
 
-def main():
+def process_game():
     user_score = 0
     computer_score = 0
     while user_score < 3 and computer_score < 3:
@@ -45,6 +45,10 @@ def main():
         elif winner == "Computer":
             computer_score += 1
         print("Computer ", computer_score, ", You ", user_score)
-    print_final_results(user_score, computer_score)
+    return winner
+
+def main():
+    winner = process_game()
+    print_final_results(winner)
 
 main()
