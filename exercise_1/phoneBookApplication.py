@@ -1,5 +1,5 @@
 # File name: phoneBookApplication.py
-# Author: Kirill
+# Author: Kirill Nikolaev
 # Description: user can add and search phone numbers using the console
 
 def get_number(phone_book):
