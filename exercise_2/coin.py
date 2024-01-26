@@ -10,10 +10,17 @@ class Coin:
         self.sideup = 'Heads'
 
     def toss_the_coin(self):
-        if random.randint(0, 1) == 0:
+        outcome = random.randint(0, 4)
+        if outcome == 0:
             self.sideup = "Heads"
-        else:
+        elif outcome == 1:
             self.sideup = "Tails"
+        elif outcome == 2:
+            self.sideup = "Upright on table"
+        elif outcome == 3:
+            self.sideup = "Disappeared in rabbit hole"
+        else:
+            self.sideup = "Lost in wormhole in space"
 
     def get_sideup(self):
         return self.sideup
