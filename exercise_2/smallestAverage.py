@@ -34,21 +34,11 @@ def countAverage(contestant):
     return (contestant['result1'] + contestant['result2'] + contestant['result3']) / 3
 
 # returns the contestant profile which contains the smallest average from three result values
-def smallestAverage(contestant1, contestant2, contestant3):
-    # calculate average for each contestant
-    contestant1Average = countAverage(contestant1)
-    contestant2Average = countAverage(contestant2)
-    contestant3Average = countAverage(contestant3)
-
-    # compare averages
-    if contestant1Average < contestant2Average and contestant1Average < contestant3Average:
-        return contestant1
-    elif contestant2Average < contestant1Average and contestant2Average < contestant3Average:
-        return contestant2
-    else:
-        return contestant3
+def smallestAverage(contestants):
+    # Use the built-in min function with a custom key function
+    return min(contestants, key=countAverage)
     
 
 # print result
-print(smallestAverage(contestant1, contestant2, contestant3))
+print(smallestAverage([contestant1, contestant2, contestant3]))
 
