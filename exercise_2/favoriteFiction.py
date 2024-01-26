@@ -1,4 +1,4 @@
-# File: listOfYears.py
+# File: favoriteFiction.py
 # Author: Kirill Nikolaev
 # Description: as in task description
 
