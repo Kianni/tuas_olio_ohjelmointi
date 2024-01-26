@@ -2,6 +2,8 @@
 # Author: Kirill Nikolaev
 # Description: simple alarm clock
 
+import time
+
 class Clock:
     def __init__(self, hours=0, minutes=0, seconds=0):
         self.hours = hours
@@ -31,8 +33,9 @@ class Clock:
         return f"{str(self.hours).zfill(2)}:{str(self.minutes).zfill(2)}:{str(self.seconds).zfill(2)}"
 
 
-# Usage
 my_clock = Clock(10, 30, 45)
-print(my_clock.display_time())  # prints: 10:30:45
-my_clock.tick()
-print(my_clock.display_time())  # prints: 10:30:46
+
+while True:
+    print(my_clock.display_time(), end='\r')
+    time.sleep(1)
+    my_clock.tick()
