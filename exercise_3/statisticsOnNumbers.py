@@ -23,13 +23,25 @@ class NumberStats:
         return self.get_sum() / self.count_numbers()
     
 def main():
-    stats = NumberStats()
+    stats_all = NumberStats()
+    stats_even = NumberStats()
+    stats_odd = NumberStats()
+
     number = int(input("Enter an integer number (-1 to stop): "))
     while number != -1:
-        stats.add_number(number)
+        stats_all.add_number(number)
+        if number % 2 == 0:
+            stats_even.add_number(number)
+        else:
+            stats_odd.add_number(number)
         number = int(input("Enter an integer number (-1 to stop): "))
-    print("Sum of numbers: ", stats.get_sum())
-    print("Mean of numbers: ", stats.average())
+
+    print("Sum of numbers: ", stats_all.get_sum())
+    print("Mean of numbers: ", stats_all.average())
+    print("Sum of even numbers: ", stats_even.get_sum())
+    # print("Mean of even numbers: ", stats_even.average())
+    print("Sum of odd numbers: ", stats_odd.get_sum())
+    # print("Mean of odd numbers: ", stats_odd.average())
 
 if __name__ == "__main__":
     main()
