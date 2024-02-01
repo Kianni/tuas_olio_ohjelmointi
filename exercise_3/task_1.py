@@ -1,3 +1,6 @@
+# File: task_1.py
+# Author: Kirill Nikolaev
+
 # # a. Encapsulation in OOP: 
 # Encapsulation is one of the fundamental principles of Object-Oriented Programming (OOP). 
 # It refers to the bundling of data, and methods that operate on that data, 
@@ -17,19 +20,30 @@ class Prisoner:
 class Prison:
     def __init__(self):
         self.prisoners = []
-        self.__amountOfPrisoners = self.prisoners.length  # private attribute
+        self.__amountOfPrisoners = len(self.prisoners)  # private attribute
 
     def add_prisoner(self, new_prisoners: List[Prisoner]):
         for prisoner in new_prisoners:
             if prisoner.status.lower() != "political":
                 self.prisoners.append(prisoner)
+            self.__amountOfPrisoners = len(self.prisoners)
         return self.__amountOfPrisoners # private attribute
 
     def release_prisoner(self, prisoners_to_release: List[Prisoner]):
         for prisoner in prisoners_to_release:
             if prisoner in self.prisoners and prisoner.status.lower() != "political":
                 self.prisoners.remove(prisoner)
+            self.__amountOfPrisoners = len(self.prisoners)
         return self.__amountOfPrisoners # private attribute
+    
+def main():
+    prison = Prison()
+    prisoners = [Prisoner("Navalny", "political"), Prisoner("Petrov", "criminal"), Prisoner("Sidorov", "criminal")]
+    prison.add_prisoner(prisoners)
+    print("Amount of prisoners: ", prison.add_prisoner(prisoners))
+    print("Amount of prisoners: ", prison.release_prisoner(prisoners))
+
+main()
 
 # # b. Client in OOP: 
 # In the context of OOP, a client is an entity that uses an object. 
