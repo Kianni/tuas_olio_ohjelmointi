@@ -24,12 +24,12 @@ class NumberStats:
     
 def main():
     stats = NumberStats()
-    stats.add_number(3)
-    stats.add_number(5)
-    stats.add_number(1)
-    stats.add_number(2)
-    print("Numbers added: ", stats.count_numbers())
+    number = int(input("Enter an integer number (-1 to stop): "))
+    while number != -1:
+        stats.add_number(number)
+        number = int(input("Enter an integer number (-1 to stop): "))
     print("Sum of numbers: ", stats.get_sum())
     print("Mean of numbers: ", stats.average())
 
-main()
+if __name__ == "__main__":
+    main()
