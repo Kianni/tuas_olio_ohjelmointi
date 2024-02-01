@@ -28,21 +28,28 @@ class LunchCard:
         return "The balance is {:.1f} euros".format(self.balance)
     
 def main():
-    card=LunchCard(10)
-    print(card)
-    card.deposit_money(15)
-    print(card)
-    card.deposit_money(10)
-    print(card)
-    card.deposit_money(200)
-    print(card)
-    card.eat_ordinarly()
-    print(card)
+    peter_card = LunchCard(20)
+    grace_card = LunchCard(30)
 
-    card.deposit_money(-10)
-    card.eat_luxuriously()
-    card.eat_ordinarly()
-    print(card)
+    peter_card.eat_luxuriously()
+    grace_card.eat_ordinarly()
+
+    print("Peter: " + str(peter_card))
+    print("Grace: " + str(grace_card))
+
+    peter_card.deposit_money(20)
+    grace_card.eat_luxuriously()
+
+    print("Peter: " + str(peter_card))
+    print("Grace: " + str(grace_card))
+
+    peter_card.eat_ordinarly()
+    peter_card.eat_ordinarly()
+    grace_card.deposit_money(50)
+
+    print("Peter: " + str(peter_card))
+    print("Grace: " + str(grace_card))
 
 if __name__ == "__main__":
     main()
+
