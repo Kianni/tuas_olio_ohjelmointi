@@ -27,7 +27,7 @@ class PaymentTerminal:
         self.ordinaries = 0
         self.luxuries = 0
 
-    def eat_ordinary(self, payment: float):
+    def eat_ordinarily(self, payment: float):
         # A ordinary lunch costs 2.95 euros.
         # Increase the value of the funds at the terminal by the 
         # price of the lunch, increase the number of lunches sold, 
@@ -38,6 +38,8 @@ class PaymentTerminal:
             self.funds += 2.95
             self.ordinaries += 1
             return payment - 2.95
+        else:
+            return payment
 
     def eat_luxury(self, payment: float):
         # A sluxury lunch costs 5.90 euros.
@@ -50,8 +52,10 @@ class PaymentTerminal:
             self.funds += 5.90
             self.luxuries += 1
             return payment - 5.90
+        else:
+            return payment
 
-    def eat_ordinary_lunchcard(self, card: LunchCard):
+    def eat_ordinarily_lunchcard(self, card: LunchCard):
         # A ordinary lunch costs 2.95 euros.
         # If there is enough money on the card, 
         # subtract the price of the lunch from the balance
@@ -59,9 +63,11 @@ class PaymentTerminal:
         if card.subtract_from_balance(2.95):
             self.ordinaries += 1
             return True
+        else:
+            return False
 
 
-    def eat_luxury_lunchcard(self, card: LunchCard):
+    def eat_luxuriously_lunchcard(self, card: LunchCard):
         # A luxury lunch costs 5.90 euros.
         # If there is enough money on the card, 
         # subtract the price of the lunch from the balance
@@ -69,6 +75,8 @@ class PaymentTerminal:
         if card.subtract_from_balance(5.90):
             self.luxuries += 1
             return True
+        else:    
+            return False
     
     def deposit_money_on_card(self, card: LunchCard, amount: float):
         card.deposit_money(amount)
@@ -90,10 +98,10 @@ if __name__ == "__main__":
     #Part2
     exactum = PaymentTerminal()
 
-    change = exactum.eat_ordinary(10)
+    change = exactum.eat_ordinarily(10)
     print("The change returned was", change)
 
-    change = exactum.eat_ordinary(5.9)
+    change = exactum.eat_ordinarily(5.9)
     print("The change returned was", change)
 
     change = exactum.eat_luxury(5.9)
@@ -106,16 +114,16 @@ if __name__ == "__main__":
     #Part 3
     exactum = PaymentTerminal()
 
-    change = exactum.eat_ordinary(10)
+    change = exactum.eat_ordinarily(10)
     print("The change returned was", change)
 
     card = LunchCard(7)
 
-    result = exactum.eat_luxury_lunchcard(card)
+    result = exactum.eat_luxuriously_lunchcard(card)
     print("Payment successful:", result)
-    result = exactum.eat_luxury_lunchcard(card)
+    result = exactum.eat_luxuriously_lunchcard(card)
     print("Payment successful:", result)
-    result = exactum.eat_ordinary_lunchcard(card)
+    result = exactum.eat_ordinarily_lunchcard(card)
     print("Payment successful:", result)
 
     print("Funds available at the terminal:", exactum.funds)
@@ -128,13 +136,13 @@ if __name__ == "__main__":
     card = LunchCard(2)
     print(f"Card balance is {card.balance} euros")
 
-    result = exactum.eat_luxury_lunchcard(card)
+    result = exactum.eat_luxuriously_lunchcard(card)
     print("Payment successful:", result)
 
     exactum.deposit_money_on_card(card, 100)
     print(f"Card balance is {card.balance} euros")
 
-    result = exactum.eat_luxury_lunchcard(card)
+    result = exactum.eat_luxuriously_lunchcard(card)
     print("Payment successful:", result)
     print(f"Card balance is {card.balance} euros")
 
