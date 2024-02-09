@@ -12,6 +12,13 @@ class Suitcase:
     def add_item(self, item):
         if item.weight() + sum(i.weight() for i in self._items) <= self._max_weight:
             self._items.append(item)
+    
+    def print_items(self):
+        for item in self._items:
+            print(item)
+    
+    def weight(self):
+        return sum(item.weight() for item in self._items)
 
     def __str__(self):
         total_weight = sum(item.weight() for item in self._items)
@@ -24,7 +31,7 @@ def main():
     phone = Item("Nokia 3210", 100)
     brick = Item("Brick", 400)
 
-    suitcase = Suitcase(500)
+    suitcase = Suitcase(1000)
 
     print(suitcase)
 
@@ -36,6 +43,12 @@ def main():
 
     suitcase.add_item(brick)
     print(suitcase)
+
+    #part 4
+    print("The suitcase contains the following items:")
+    suitcase.print_items()
+    combined_weight = suitcase.weight()
+    print(f"Combined weight: {combined_weight}g")
 
 if __name__ == "__main__":
     main()
