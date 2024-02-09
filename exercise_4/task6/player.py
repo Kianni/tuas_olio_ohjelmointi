@@ -78,11 +78,27 @@ def main():
     player1_name = input("Enter the name of the first player: ")
     player2_name = input("Enter the name of the second player: ")
 
-    wolf = Mammal(1, "Canis lupus", "Wolf", "Large", 80)
-    bear = Mammal(2, "Ursus arctos", "Bear", "Large", 500)
+    mammal1 = Mammal(1, "Elephant", "Dumbo", 3.5, 5000)
+    mammals = [
+        Mammal(1, "Mouse", "Small", 1, 0.1),
+        Mammal(2, "Cat", "Medium", 3, 4.5),
+        Mammal(3, "Dog", "Large", 8, 30),
+        Mammal(4, "Wolf", "Large", 15, 80),
+        Mammal(5, "Bear", "Large", 100, 500),
+        Mammal(6, "Elephant", "Huge", 1200, 6000),
+        Mammal(7, "Blue Whale", "Gigantic", 10000, 200000),
+    ]
 
-    player1 = Player(player1_name, 1, wolf)
-    player2 = Player(player2_name, 2, bear)
+    player1 = Player(player1_name, 1, None)
+    player2 = Player(player2_name, 2, None)
+
+    for player in [player1, player2]:
+        dice1, dice2 = Dice(), Dice()
+        dice1.roll()
+        dice2.roll()
+        sum = dice1.get_side() + dice2.get_side()
+        player.mammal = mammals[min(sum, len(mammals)) - 1]
+        print(f"{player.name} rolled {sum} and got a {player.mammal.species}")
 
     print("Players and their mammals:")
 
