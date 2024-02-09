@@ -15,7 +15,9 @@ class Suitcase:
 
     def __str__(self):
         total_weight = sum(item.weight() for item in self._items)
-        return f"{len(self._items)} items ({total_weight}g)"
+        return (f"{len(self._items)} "
+                f"{'item' if len(self._items) == 1 else 'items'} "
+                f"({total_weight}g)")
     
 def main():
     book = Item("ABC Book", 200)
