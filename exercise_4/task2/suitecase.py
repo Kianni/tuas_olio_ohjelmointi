@@ -19,6 +19,11 @@ class Suitcase:
     
     def weight(self):
         return sum(item.weight() for item in self._items)
+    
+    def heaviest_item(self):
+        if not self._items:
+            return None
+        return max(self._items, key=lambda item: item.weight())
 
     def __str__(self):
         total_weight = sum(item.weight() for item in self._items)
@@ -49,6 +54,10 @@ def main():
     suitcase.print_items()
     combined_weight = suitcase.weight()
     print(f"Combined weight: {combined_weight}g")
+
+    # part 5
+    heaviest = suitcase.heaviest_item()
+    print(f"The heaviest item: {heaviest}")
 
 if __name__ == "__main__":
     main()
