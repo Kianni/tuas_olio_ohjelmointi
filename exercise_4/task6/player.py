@@ -3,12 +3,14 @@
 # Description: Player
 
 from dice import Dice
+from mammal import Mammal
 
 class Player:
-    def __init__(self, name, player_id):
+    def __init__(self, name, player_id, mammal):
         self.__name = name
         self.__player_id = player_id
         self.__dice = Dice()
+        self.__mammal = mammal
 
     @property
     def name(self):
@@ -34,8 +36,16 @@ class Player:
     def dice(self, dice):
         self.__dice = dice
 
+    @property
+    def mammal(self):
+        return self.__mammal
+    
+    @mammal.setter
+    def mammal(self, mammal):
+        self.__mammal = mammal
+
     def __str__(self) -> str:
-        return f"Player {self.__name} with {self.__player_id}"
+        return f"Player {self.__name} with ID {self.__player_id}"
     
 
 def two_players_game(players):
@@ -60,16 +70,27 @@ def two_players_game(players):
             print("It's a tie! Roll again!")
 
     if player1.dice.get_side() > player2.dice.get_side():
-        print(f"{player1.name} WON!!!")
+        print(f"{player1} WON!!!")
     else:
-        print(f"{player2.name} WON!!!")
+        print(f"{player2} WON!!!")
 
 def main():
     player1_name = input("Enter the name of the first player: ")
     player2_name = input("Enter the name of the second player: ")
 
-    player1 = Player(player1_name, 1)
-    player2 = Player(player2_name, 2)
+    wolf = Mammal(1, "Canis lupus", "Wolf", "Large", 80)
+    bear = Mammal(2, "Ursus arctos", "Bear", "Large", 500)
+
+    player1 = Player(player1_name, 1, wolf)
+    player2 = Player(player2_name, 2, bear)
+
+    print("Players and their mammals:")
+
+    print("{:<20} {:<20} {:<20} {:<20} {:<20}".format('Player ID', 'Name', 'Species', 'Size', 'Weight'))
+    print('-' * 100)
+    for player in [player1, player2]:
+        mammal = player.mammal
+        print("{:<20} {:<20} {:<20} {:<20} {:<20}".format(player.player_id, player.name, mammal.species, mammal.size, mammal.weight))
 
     players = {
         1: player1,
