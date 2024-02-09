@@ -1,4 +1,4 @@
-# File: serviceCharge.py
+# File: player.py
 # Author: Kirill Nikolaev
 # Description: Player
 

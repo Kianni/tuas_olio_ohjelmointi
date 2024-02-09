@@ -1,4 +1,4 @@
-# File: serviceCharge.py
+# File: dice.py
 # Author: Kirill Nikolaev
 # Description: Dice
 
