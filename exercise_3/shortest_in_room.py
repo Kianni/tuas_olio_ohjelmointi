@@ -19,6 +19,13 @@ class Room:
     
     def total_height(self):
         return sum(person.height for person in self.persons)
+    
+    def shortest(self):
+        if self.is_empty():
+            return None
+        else:
+            # determine the objects key for the minimum value
+            return min(self.persons, key=lambda person: person.height)
 
     def print_contents(self):
         if self.is_empty():
@@ -34,6 +41,7 @@ class Room:
 def main():
     room =Room()
 
+    # part 1
     print("Is the room empty?",room.is_empty())
 
     room.add(Person("Lea", 183))
@@ -44,6 +52,13 @@ def main():
 
     print("Is the room empty?",room.is_empty())
 
+    room.print_contents()
+
+    # part 2
+    print("Is the room empty?", room.is_empty())
+    shortest_person = room.shortest()
+    print("Shortest:", shortest_person if shortest_person is not None else "None")
+    print()
     room.print_contents()
 
 if __name__ == "__main__":
