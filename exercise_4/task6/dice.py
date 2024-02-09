@@ -51,7 +51,8 @@ def play_game(dices):
         print(f"{player2_name} WON!!!")
 
 def main():
-    dices = [Dice() for _ in range(3)]
+    amount_of_dices = input("Enter the amount of dices: ")
+    dices = [Dice() for _ in range(int(amount_of_dices))]
     play_game(dices)
 
 if __name__ == "__main__":
