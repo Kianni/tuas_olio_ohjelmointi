@@ -16,6 +16,11 @@ class CargoHold:
 
     def total_weight(self):
         return sum(suitcase.weight() for suitcase in self._suitcases)
+    
+    def print_items(self):
+        for i, suitcase in enumerate(self._suitcases, start=1):
+            # print(f"Items in suitcase {i}:")
+            suitcase.print_items()
 
     def __str__(self):
         remaining_weight = self._max_weight - self.total_weight()
@@ -42,6 +47,9 @@ def main():
     print(cargo_hold)
     cargo_hold.add_suitcase(peters_suitcase)
     print(cargo_hold)
+
+    print("The suitcases in the cargo hold contain the following items:")
+    cargo_hold.print_items()
 
 if __name__ == "__main__":
     main()
