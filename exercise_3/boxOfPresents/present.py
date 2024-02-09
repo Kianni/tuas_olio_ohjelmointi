@@ -4,7 +4,7 @@
 
 class Present:
     def __init__(self, name, weight):
-        self.name = name
+        self.author, self.name = [part.strip() for part in name.split(":")]
         self.weight = weight
 
     def __str__(self):
@@ -12,9 +12,9 @@ class Present:
 
 def main():
     book =Present("Ta-Nehisi Coates: The Water Dancer", 200)
-    print("The name of the present:", book.name)
+    print("The name of the present:", book.author, ":", book.name)
     print("The weight of the present:", book.weight)
-    print("Present:",book)
+    print("Present:", book)
     
 if __name__ == "__main__":
     main()
