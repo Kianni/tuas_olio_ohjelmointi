@@ -11,12 +11,20 @@ class PhoneBook:
     def add_number(self, name: str, number: str):
         person = self.get_entry(name)
         if person == None:
-            # add a new dictionary entry with an empty list for the numbers
             new_person = Person(name)
             new_person.add_number(number)
             self.__persons[name] = new_person
         else:
             person.add_number(number)
+
+    def add_address(self, name: str, address: str):
+        person = self.get_entry(name)
+        if person == None:
+            new_person = Person(name)
+            new_person.add_address(address)
+            self.__persons[name] = new_person
+        else:
+            person.add_address(address)
     
     def get_entry(self, name: str):
         if not name in self.__persons:
@@ -30,6 +38,13 @@ class PhoneBook:
             return None
 
         return person.numbers()
+    
+    def get_address(self, name: str):
+        person = self.get_entry(name)
+        if person == None:
+            return None
+
+        return person.address()
     
 def main():
     phonebook = PhoneBook()
