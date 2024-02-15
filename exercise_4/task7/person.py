@@ -23,6 +23,9 @@ class Person:
     def add_address(self, address):
         self._address = address
 
+    def __str__(self):
+        return self._name
+
 def main():
     person=Person("Eric")
     print(person.name())
