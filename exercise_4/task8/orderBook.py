@@ -17,11 +17,27 @@ class OrderBook:
     def programmers(self):
         return list(set([order.programmer for order in self.orders]))
     
+    def mark_finished(self, id):
+        for order in self.orders:
+            if order.id == id:
+                order.mark_finished()
+                return
+        raise ValueError(f"No task with id {id} found")
+
+    def finished_orders(self):
+        return [order for order in self.orders if order.is_finished()]
+
+    def unfinished_orders(self):
+        return [order for order in self.orders if not order.is_finished()]
+    
 def main():
     orders=OrderBook()
-    orders.add_order("program webstore","Adele",10)
-    orders.add_order("program mobile app for workload accounting","Eric",25)
-    orders.add_order("program app for practising mathematics","Adele",100)
+    orders.add_order("program webstore", "Adele", 10)
+    orders.add_order("program mobile app for workload accounting", "Eric", 25)
+    orders.add_order("program app for practising mathematics", "Adele", 100)
+
+    orders.mark_finished(1)
+    orders.mark_finished(2)
 
     for order in orders.all_orders():
         print(order)
