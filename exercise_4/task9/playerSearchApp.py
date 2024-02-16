@@ -26,6 +26,18 @@ class HockeyStats:
             data = json.load(f)
         print(f"read the data of {len(data)} players")
         return data
+    
+    def list_players_in_team(self, team):
+        players = [player for player in self.data if player['team'] == team]
+        players.sort(key=lambda player: player['goals'] + player['assists'], reverse=True)
+        for player in players:
+            print(f"{player['name']:<20} {player['team']:>3} {player['goals']:>2} + {player['assists']:>2} = {player['goals'] + player['assists']:>2}")
+
+    def list_players_from_country(self, country):
+        players = [player for player in self.data if player['nationality'] == country]
+        players.sort(key=lambda player: player['goals'] + player['assists'], reverse=True)
+        for player in players:
+            print(f"{player['name']:<20} {player['team']:>3} {player['goals']:>2} + {player['assists']:>2} = {player['goals'] + player['assists']:>2}")
         
     def main(self):
         while True:
@@ -48,6 +60,12 @@ class HockeyStats:
                 self.list_teams()
             elif command == 3:
                 self.list_countries()
+            elif command == 4:
+                team = input("team: ")
+                self.list_players_in_team(team)
+            elif command == 5:
+                country = input("country: ")
+                self.list_players_from_country(country)
 
 def main():
     filename = input("file name: ")
