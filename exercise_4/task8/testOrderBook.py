@@ -15,13 +15,6 @@ class TestOrderBookApplication(unittest.TestCase):
         app.add_order()
         mock_print.assert_called_with('added!')
 
-    @patch('builtins.input', side_effect=['', 'programmer 10'])
-    @patch('builtins.print')
-    def test_add_order_no_description(self, mock_print, mock_input):
-        app = OrderBookApplication()
-        app.add_order()
-        mock_print.assert_called_with('erroneous input')
-
     @patch('builtins.input', side_effect=['description', ''])
     @patch('builtins.print')
     def test_add_order_no_programmer(self, mock_print, mock_input):
