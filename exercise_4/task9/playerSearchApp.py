@@ -27,27 +27,30 @@ class HockeyStats:
         print(f"read the data of {len(data)} players")
         return data
     
+    def format_player(self, player):
+        return f"{player['name']:<20} {player['team']:>3} {player['goals']:>2} + {player['assists']:>2} = {player['goals'] + player['assists']:>2}"
+
     def list_players_in_team(self, team):
         players = [player for player in self.data if player['team'] == team]
         players.sort(key=lambda player: player['goals'] + player['assists'], reverse=True)
         for player in players:
-            print(f"{player['name']:<20} {player['team']:>3} {player['goals']:>2} + {player['assists']:>2} = {player['goals'] + player['assists']:>2}")
+            print(self.format_player(player))
 
     def list_players_from_country(self, country):
         players = [player for player in self.data if player['nationality'] == country]
         players.sort(key=lambda player: player['goals'] + player['assists'], reverse=True)
         for player in players:
-            print(f"{player['name']:<20} {player['team']:>3} {player['goals']:>2} + {player['assists']:>2} = {player['goals'] + player['assists']:>2}")
+            print(self.format_player(player))
 
     def most_points(self, n):
         players = sorted(self.data, key=lambda player: (player['goals'] + player['assists'], player['goals']), reverse=True)
         for player in players[:n]:
-            print(f"{player['name']:<20} {player['team']:>3} {player['goals']:>2} + {player['assists']:>2} = {player['goals'] + player['assists']:>2}")
+            print(self.format_player(player))
 
     def most_goals(self, n):
         players = sorted(self.data, key=lambda player: (player['goals'], -player['games']), reverse=True)
         for player in players[:n]:
-            print(f"{player['name']:<20} {player['team']:>3} {player['goals']:>2} + {player['assists']:>2} = {player['goals'] + player['assists']:>2}")  
+            print(self.format_player(player))
     
     def main(self):
         while True:
