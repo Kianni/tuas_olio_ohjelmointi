@@ -28,22 +28,31 @@ class HockeyStats:
         return data
     
     def format_player(self, player):
-        return f"{player['name']:<20} {player['team']:>3} {player['goals']:>2} + {player['assists']:>2} = {player['goals'] + player['assists']:>2}"
+        return (
+            f"{player['name']:<20} "
+            f"{player['team']:>3} "
+            f"{player['goals']:>2} + "
+            f"{player['assists']:>2} = "
+            f"{player['goals'] + player['assists']:>2}"
+        )
+    
+    def get_score(self, player):
+        return player['goals'] + player['assists']
 
     def list_players_in_team(self, team):
         players = [player for player in self.data if player['team'] == team]
-        players.sort(key=lambda player: player['goals'] + player['assists'], reverse=True)
+        players.sort(key=lambda player: self.get_score(player), reverse=True)
         for player in players:
             print(self.format_player(player))
 
     def list_players_from_country(self, country):
         players = [player for player in self.data if player['nationality'] == country]
-        players.sort(key=lambda player: player['goals'] + player['assists'], reverse=True)
+        players.sort(key=lambda player: self.get_score(player), reverse=True)
         for player in players:
             print(self.format_player(player))
 
     def most_points(self, n):
-        players = sorted(self.data, key=lambda player: (player['goals'] + player['assists'], player['goals']), reverse=True)
+        players = sorted(self.data, key=lambda player: (self.get_score(player), player['goals']), reverse=True)
         for player in players[:n]:
             print(self.format_player(player))
 
