@@ -19,10 +19,16 @@ class OrderBookApplication:
         print("6 status of programmer")
 
     def add_order(self):
-        description = input("description: ")
-        programmer, workload = input("programmer and workload estimate: ").split()
-        self.__orders.add_order(description, programmer, int(workload))
-        print("added!")
+        try:
+            description = input("description: ")
+            programmer, workload = input("programmer and workload estimate: ").split()
+            workload = int(workload)
+            if not programmer or not description or workload < 0:
+                raise ValueError
+            self.__orders.add_order(description, programmer, int(workload))
+            print("added!")
+        except ValueError:
+            print("erroneous input")
 
     def list_finished_tasks(self):
         finished = self.__orders.finished_orders()
@@ -37,18 +43,28 @@ class OrderBookApplication:
             print(order)
 
     def mark_task_as_finished(self):
-        id = int(input("id: "))
-        self.__orders.mark_finished(id)
-        print("marked as finished")
+        try:
+            id = int(input("id: "))
+            if id < 0:
+                raise ValueError
+            self.__orders.mark_finished(id)
+            print("marked as finished")
+        except ValueError:
+            print("erroneous input")
 
     def programmers(self):
         for programmer in self.__orders.programmers():
             print(programmer)
 
     def status_of_programmer(self):
-        programmer = input("programmer: ")
-        finished, finished_hours, unfinished, unfinished_hours = self.__orders.status_of_programmer(programmer)
-        print(f"tasks: finished {finished} not finished {unfinished}, hours: done {finished_hours} scheduled {unfinished_hours}")
+        try:
+            programmer = input("programmer: ")
+            if not programmer:
+                raise ValueError
+            finished, finished_hours, unfinished, unfinished_hours = self.__orders.status_of_programmer(programmer)
+            print(f"tasks: finished {finished} not finished {unfinished}, hours: done {finished_hours} scheduled {unfinished_hours}")
+        except ValueError:
+            print("erroneous input")
 
     def execute(self):
         self.help()
@@ -69,6 +85,8 @@ class OrderBookApplication:
                 self.programmers()
             elif command == "6":
                 self.status_of_programmer()
+            else:
+                print("unknown command")
 
 def main():
     application = OrderBookApplication()
