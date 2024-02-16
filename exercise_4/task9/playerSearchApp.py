@@ -38,7 +38,17 @@ class HockeyStats:
         players.sort(key=lambda player: player['goals'] + player['assists'], reverse=True)
         for player in players:
             print(f"{player['name']:<20} {player['team']:>3} {player['goals']:>2} + {player['assists']:>2} = {player['goals'] + player['assists']:>2}")
-        
+
+    def most_points(self, n):
+        players = sorted(self.data, key=lambda player: (player['goals'] + player['assists'], player['goals']), reverse=True)
+        for player in players[:n]:
+            print(f"{player['name']:<20} {player['team']:>3} {player['goals']:>2} + {player['assists']:>2} = {player['goals'] + player['assists']:>2}")
+
+    def most_goals(self, n):
+        players = sorted(self.data, key=lambda player: (player['goals'], -player['games']), reverse=True)
+        for player in players[:n]:
+            print(f"{player['name']:<20} {player['team']:>3} {player['goals']:>2} + {player['assists']:>2} = {player['goals'] + player['assists']:>2}")  
+    
     def main(self):
         while True:
             print("commands:")
@@ -66,6 +76,12 @@ class HockeyStats:
             elif command == 5:
                 country = input("country: ")
                 self.list_players_from_country(country)
+            elif command == 6:
+                n = int(input("how many: "))
+                self.most_points(n)
+            elif command == 7:
+                n = int(input("how many: "))
+                self.most_goals(n)
 
 def main():
     filename = input("file name: ")
