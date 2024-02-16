@@ -1,3 +1,7 @@
+# File: testPlayerSearchApp.py
+# Author: Kirill Nikolaev
+# Description: test HockeyStats class
+
 from contextlib import redirect_stdout
 import unittest
 from unittest.mock import patch
