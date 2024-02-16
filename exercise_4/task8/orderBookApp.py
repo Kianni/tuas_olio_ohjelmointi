@@ -1,55 +1,78 @@
 # File: orderBookApp.py
 # Author: Kirill Nikolaev
-# Description: orderBookApp
+# Description: orderBookApp class
 
 from orderBook import OrderBook
 
-def main():
-    orders = OrderBook()
-    commands = {
-        "0": "exit",
-        "1": "add order",
-        "2": "list finished tasks",
-        "3": "list unfinished tasks",
-        "4": "mark task as finished",
-        "5": "programmers",
-        "6": "status of programmer"
-    }
+class OrderBookApplication:
+    def __init__(self):
+        self.__orders = OrderBook()
 
-    while True:
-        print("commands:")
-        for key, value in commands.items():
-            print(f"{key} {value}")
-        command = input("command: ")
+    def help(self):
+        print("commands: ")
+        print("0 exit")
+        print("1 add order")
+        print("2 list finished tasks")
+        print("3 list unfinished tasks")
+        print("4 mark task as finished")
+        print("5 programmers")
+        print("6 status of programmer")
 
-        if command == "0":
-            break
-        elif command == "1":
-            description = input("description: ")
-            programmer, workload = input("programmer and workload estimate: ").split()
-            orders.add_order(description, programmer, int(workload))
-            print("added!")
-        elif command == "2":
-            finished = orders.finished_orders()
-            if finished:
-                for order in finished:
-                    print(order)
-            else:
-                print("no finished tasks")
-        elif command == "3":
-            for order in orders.unfinished_orders():
+    def add_order(self):
+        description = input("description: ")
+        programmer, workload = input("programmer and workload estimate: ").split()
+        self.__orders.add_order(description, programmer, int(workload))
+        print("added!")
+
+    def list_finished_tasks(self):
+        finished = self.__orders.finished_orders()
+        if finished:
+            for order in finished:
                 print(order)
-        elif command == "4":
-            id = int(input("id: "))
-            orders.mark_finished(id)
-            print("marked as finished")
-        elif command == "5":
-            for programmer in orders.programmers():
-                print(programmer)
-        elif command == "6":
-            programmer = input("programmer: ")
-            finished, finished_hours, unfinished, unfinished_hours = orders.status_of_programmer(programmer)
-            print(f"tasks: finished {finished} not finished {unfinished}, hours: done {finished_hours} scheduled {unfinished_hours}")
+        else:
+            print("no finished tasks")
+
+    def list_unfinished_tasks(self):
+        for order in self.__orders.unfinished_orders():
+            print(order)
+
+    def mark_task_as_finished(self):
+        id = int(input("id: "))
+        self.__orders.mark_finished(id)
+        print("marked as finished")
+
+    def programmers(self):
+        for programmer in self.__orders.programmers():
+            print(programmer)
+
+    def status_of_programmer(self):
+        programmer = input("programmer: ")
+        finished, finished_hours, unfinished, unfinished_hours = self.__orders.status_of_programmer(programmer)
+        print(f"tasks: finished {finished} not finished {unfinished}, hours: done {finished_hours} scheduled {unfinished_hours}")
+
+    def execute(self):
+        self.help()
+        while True:
+            print("")
+            command = input("command: ")
+            if command == "0":
+                break
+            elif command == "1":
+                self.add_order()
+            elif command == "2":
+                self.list_finished_tasks()
+            elif command == "3":
+                self.list_unfinished_tasks()
+            elif command == "4":
+                self.mark_task_as_finished()
+            elif command == "5":
+                self.programmers()
+            elif command == "6":
+                self.status_of_programmer()
+
+def main():
+    application = OrderBookApplication()
+    application.execute()
 
 if __name__ == "__main__":
     main()
