@@ -29,7 +29,7 @@ class OrderBook:
 
     def unfinished_orders(self):
         return [order for order in self.orders if not order.is_finished()]
-    
+
     def status_of_programmer(self, programmer):
         finished = [order for order in self.orders if order.programmer == programmer and order.is_finished()]
         unfinished = [order for order in self.orders if order.programmer == programmer and not order.is_finished()]
